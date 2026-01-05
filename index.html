@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Território Triunfo</title>
     <link rel="stylesheet" href="CSS.css">
 </head>
@@ -40,37 +40,17 @@
 </div>
 
 <script>
-    let pinchZoom;
-
     function abrirModal(imagem) {
         const modal = document.getElementById("modal");
-        modal.style.display = "flex";
-
         const img = document.getElementById("imagemModal");
+
         img.src = imagem;
-
-        if (pinchZoom) pinchZoom.destroy();
-
-        pinchZoom = new PinchZoom(img, {
-            maxZoom: 4
-        });
+        modal.style.display = "flex";
     }
 
     function fecharModal() {
         document.getElementById("modal").style.display = "none";
     }
-
-    /* BLOQUEAR DOUBLE TAP ZOOM FORA DO MODAL (iOS) */
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function (event) {
-        if (!event.target.closest('.modal')) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }
-    }, { passive: false });
 </script>
 
 </body>
