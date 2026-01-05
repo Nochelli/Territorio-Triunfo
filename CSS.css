@@ -1,4 +1,4 @@
-/* RESET E BASE */
+/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -51,7 +51,7 @@ h1 {
 
 /* MODAL */
 .modal {
-    display: none; /* começa escondido */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -59,29 +59,29 @@ h1 {
     height: 100%;
     background: rgba(0,0,0,0.7);
     z-index: 10;
-    overflow-y: auto; /* scroll vertical se necessário */
+    overflow-y: auto;
     padding: 20px;
-    box-sizing: border-box;
     justify-content: center;
-    align-items: flex-start; /* imagem começa do topo */
+    align-items: flex-start;
 }
 
-/* ÁREA DE ZOOM (contêiner do pinch) */
+/* ZOOM AREA */
 .zoom-area {
     width: 100%;
     max-width: 500px;
-    max-height: 90vh; /* nunca ultrapassa a tela */
+    height: 80vh;
     margin: 0 auto;
+    overflow: hidden;
+    touch-action: none;
 }
 
-/* IMAGEM NO MODAL */
 .zoom-area img {
-    display: block;       /* essencial para PinchZoom */
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 10px;
-    touch-action: none;   /* pinch zoom só na imagem */
+    touch-action: none;
 }
 
 /* BOTÃO FECHAR */
@@ -94,7 +94,7 @@ h1 {
     cursor: pointer;
 }
 
-/* RESPONSIVO PARA CELULARES */
+/* RESPONSIVO CELULAR */
 @media (max-width: 480px) {
     .zoom-area img {
         max-height: 85vh;
