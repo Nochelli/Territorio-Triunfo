@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Território Triunfo</title>
     <link rel="stylesheet" href="CSS.css">
 </head>
@@ -33,7 +33,7 @@
 <!-- MODAL -->
 <div id="modal" class="modal" onclick="fecharModal()">
     <span class="fechar" onclick="fecharModal()">&times;</span>
-    <div class="zoom-area" onclick="event.stopPropagation()">
+    <div id="pinchContainer" class="zoom-area" onclick="event.stopPropagation()">
         <img id="imagemModal" src="">
     </div>
 </div>
@@ -47,15 +47,14 @@ let pinchZoom;
 function abrirModal(imagem) {
     const modal = document.getElementById("modal");
     const img = document.getElementById("imagemModal");
+    const container = document.getElementById("pinchContainer");
 
     img.src = imagem;
     modal.style.display = "flex";
 
     img.onload = () => {
         if (pinchZoom) pinchZoom.destroy();
-
-        // Inicializa pinchZoom DIRETO na imagem
-        pinchZoom = new PinchZoom(img, {
+        pinchZoom = new PinchZoom(container, {
             maxZoom: 4,
             contain: 'inside'
         });

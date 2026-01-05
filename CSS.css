@@ -5,7 +5,7 @@
     padding: 0;
 }
 
-html, body {
+body {
     font-family: Arial, sans-serif;
     background-color: #bdbdbd;
     min-height: 100vh;
@@ -13,8 +13,6 @@ html, body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    touch-action: pan-x pan-y; /* Permite scroll normal da página */
-    overflow: hidden;           /* Bloqueia scroll fora do modal */
 }
 
 /* CONTAINER PRINCIPAL */
@@ -55,31 +53,35 @@ h1 {
 .modal {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.7);
     z-index: 10;
     overflow-y: auto;
+    padding: 20px;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
 }
 
 /* ZOOM AREA */
 .zoom-area {
     width: 100%;
     max-width: 500px;
-    max-height: 80vh;
+    height: 80vh;
     margin: 0 auto;
     overflow: hidden;
-    touch-action: none; /* ESSENCIAL: permite pinch apenas na imagem */
+    touch-action: none;   /* essencial para pinch no celular */
 }
 
 .zoom-area img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 10px;
-    touch-action: none; /* Pinch só afeta a imagem */
+    touch-action: none;   /* pinch só na imagem */
 }
 
 /* BOTÃO FECHAR */
