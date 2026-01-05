@@ -2,71 +2,71 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Território Triunfo</title>
     <link rel="stylesheet" href="CSS.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Dias da Semana</h1>
+<div class="container">
+    <h1>Dias da Semana</h1>
 
-        <div class="dias">
-            <button onclick="abrirModal('segunda/azenha.jpg')">Segunda-feira</button>
-            <button onclick="abrirModal('terca/triunfo.jpg')">Terça-feira</button>
-            <button onclick="abrirModal('quarta.jpg')">Quarta-feira</button>
-            <button onclick="abrirModal('quinta.jpg')">Quinta-feira</button>
-            <button onclick="abrirModal('sexta.jpg')">Sexta-feira</button>
-            <button onclick="abrirModal('sabado.jpg')">Sábado</button>
+    <div class="dias">
+        <button onclick="abrirModal('segunda/azenha.jpg')">Segunda-feira</button>
+        <button onclick="abrirModal('terca/triunfo.jpg')">Terça-feira</button>
+        <button onclick="abrirModal('quarta.jpg')">Quarta-feira</button>
+        <button onclick="abrirModal('quinta.jpg')">Quinta-feira</button>
+        <button onclick="abrirModal('sexta.jpg')">Sexta-feira</button>
+        <button onclick="abrirModal('sabado.jpg')">Sábado</button>
 
-            <h2>Domingo</h2>
-            <button onclick="abrirModal('domingo1.jpg')">Grupo 1 - Salão do Reino</button>
-            <button onclick="abrirModal('domingo2.jpg')">Grupo 2 - S. Luiza I</button>
-            <button onclick="abrirModal('domingo3.jpg')">Grupo 3 - Vila Azenha</button>
-            <button onclick="abrirModal('domingo4.jpg')">Grupo 4 - S. Jorge I</button>
-            <button onclick="abrirModal('domingo5.jpg')">Grupo 5 - S. Jorge II</button>
-            <button onclick="abrirModal('domingo6.jpg')">Grupo 6 - S. Jorge III</button>
-            <button onclick="abrirModal('domingo7.jpg')">Grupo 7 - S. Jorge III</button>
-        </div>
+        <h2>Domingo</h2>
+        <button onclick="abrirModal('domingo1.jpg')">Grupo 1 - Salão do Reino</button>
+        <button onclick="abrirModal('domingo2.jpg')">Grupo 2 - S. Luiza I</button>
+        <button onclick="abrirModal('domingo3.jpg')">Grupo 3 - Vila Azenha</button>
+        <button onclick="abrirModal('domingo4.jpg')">Grupo 4 - S. Jorge I</button>
+        <button onclick="abrirModal('domingo5.jpg')">Grupo 5 - S. Jorge II</button>
+        <button onclick="abrirModal('domingo6.jpg')">Grupo 6 - S. Jorge III</button>
+        <button onclick="abrirModal('domingo7.jpg')">Grupo 7 - S. Jorge III</button>
     </div>
+</div>
 
-    <!-- MODAL -->
-    <div id="modal" class="modal" onclick="fecharModal()">
-        <span class="fechar" onclick="fecharModal()">&times;</span>
-        <div id="pinchContainer" class="zoom-area" onclick="event.stopPropagation()">
-            <img id="imagemModal" src="">
-        </div>
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="fecharModal()">
+    <span class="fechar" onclick="fecharModal()">&times;</span>
+    <div class="zoom-area" onclick="event.stopPropagation()">
+        <img id="imagemModal" src="">
     </div>
+</div>
 
-    <!-- PinchZoom -->
-    <script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
+<!-- PinchZoom -->
+<script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
 
-    <script>
-        let pinchZoom;
+<script>
+let pinchZoom;
 
-        function abrirModal(imagem) {
-            const modal = document.getElementById("modal");
-            const img = document.getElementById("imagemModal");
-            const container = document.getElementById("pinchContainer");
+function abrirModal(imagem) {
+    const modal = document.getElementById("modal");
+    const img = document.getElementById("imagemModal");
 
-            img.src = imagem;
-            modal.style.display = "flex";
+    img.src = imagem;
+    modal.style.display = "flex";
 
-            img.onload = () => {
-                if (pinchZoom) pinchZoom.destroy();
+    img.onload = () => {
+        if (pinchZoom) pinchZoom.destroy();
 
-                pinchZoom = new PinchZoom(container, {
-                    maxZoom: 4,
-                    contain: 'inside'
-                });
-            };
-        }
+        // Inicializa pinchZoom DIRETO na imagem
+        pinchZoom = new PinchZoom(img, {
+            maxZoom: 4,
+            contain: 'inside'
+        });
+    };
+}
 
-        function fecharModal() {
-            const modal = document.getElementById("modal");
-            modal.style.display = "none";
-        }
-    </script>
+function fecharModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+</script>
 
 </body>
 </html>
