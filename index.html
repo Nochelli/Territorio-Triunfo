@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Território Triunfo</title>
     <link rel="stylesheet" href="CSS.css">
 </head>
@@ -32,39 +32,45 @@
 
 <!-- MODAL -->
 <div id="modal" class="modal" onclick="fecharModal()">
-    <span class="fechar" onclick="fecharModal()">&times;</span>
-    <div id="pinchContainer" class="zoom-area" onclick="event.stopPropagation()">
-        <img id="imagemModal" src="">
+    <span class="fechar">&times;</span>
+
+    <div class="zoom-area" onclick="event.stopPropagation()">
+        <img id="imagemModal">
     </div>
 </div>
 
-<!-- PinchZoom -->
-<script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
-
 <script>
-let pinchZoom;
+    let pinchZoom;
 
-function abrirModal(imagem) {
-    const modal = document.getElementById("modal");
-    const img = document.getElementById("imagemModal");
-    const container = document.getElementById("pinchContainer");
+    function abrirModal(imagem) {
+        const modal = document.getElementById("modal");
+        modal.style.display = "flex";
 
-    img.src = imagem;
-    modal.style.display = "flex";
+        const img = document.getElementById("imagemModal");
+        img.src = imagem;
 
-    img.onload = () => {
         if (pinchZoom) pinchZoom.destroy();
-        pinchZoom = new PinchZoom(container, {
-            maxZoom: 4,
-            contain: 'inside'
-        });
-    };
-}
 
-function fecharModal() {
-    const modal = document.getElementById("modal");
-    modal.style.display = "none";
-}
+        pinchZoom = new PinchZoom(img, {
+            maxZoom: 4
+        });
+    }
+
+    function fecharModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+    /* BLOQUEAR DOUBLE TAP ZOOM FORA DO MODAL (iOS) */
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+        if (!event.target.closest('.modal')) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }
+    }, { passive: false });
 </script>
 
 </body>
