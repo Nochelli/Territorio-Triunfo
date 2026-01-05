@@ -41,7 +41,7 @@ h1 {
     cursor: pointer;
     background: #4a90e2;
     color: white;
-    transition: transform 0.2s, background 0.2s;
+    transition: transform 0.2s; background: 0.2s;
 }
 
 .dias button:hover {
@@ -57,7 +57,7 @@ html, body {
 /* MODAL */
 .modal {
     display: none;
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.7);
     justify-content: center;
