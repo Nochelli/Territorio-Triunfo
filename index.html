@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Território Triunfo</title>
+    <link rel="stylesheet" href="CSS.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dias da Semana</h1>
+
+        <div class="dias">
+            <button onclick="abrirModal('segunda/azenha.jpg')">Segunda-feira</button>
+            <button onclick="abrirModal('triunfo.jpg')">Terça-feira</button>
+            <button onclick="abrirModal('quarta.jpg')">Quarta-feira</button>
+            <button onclick="abrirModal('quinta.jpg')">Quinta-feira</button>
+            <button onclick="abrirModal('sexta.jpg')">Sexta-feira</button>
+            <button onclick="abrirModal('sabado.jpg')">Sábado</button>
+
+            <h2>Domingo</h2>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 1 - Salão do Reino</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 2 - S. Luiza I</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 3 - Vila Azenha</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 4 - S. Jorge I</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 5 - S. Jorge II</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 6 - S. Jorge III</button>
+            <button onclick="abrirModal('domingo.jpg')">Grupo 7 - S. Jorge III</button>            
+
+
+
+        </div>
+    </div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="fecharModal()">
+    <span class="fechar">&times;</span>
+
+    <div class="zoom-area" onclick="event.stopPropagation()">
+        <img id="imagemModal" src="">
+    </div>
+</div>
+
+<!-- BIBLIOTECA DE ZOOM -->
+<script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
+
+
+<script>
+    let pinchZoom;
+
+    function abrirModal(imagem) {
+        document.getElementById("modal").style.display = "flex";
+
+        const img = document.getElementById("imagemModal");
+        img.src = imagem;
+
+        if (pinchZoom) {
+            pinchZoom.destroy();
+        }
+
+        pinchZoom = new PinchZoom(img, {
+            maxZoom: 4
+        });
+    }
+
+    function fecharModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+</script>
+
+
+</body>
+</html>

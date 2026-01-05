@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 8px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#imagemDia {
+    margin-top: 20px;
+    max-width: 300px;
+    display: none;
+}
+
+.zoom-area {
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+}
+
+.zoom-area img {
+    max-width: 100%;
+    max-height: 100%;
+    touch-action: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #bdbdbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* BOTÕES */
+.dias button {
+    width: 100%;
+    margin: 6px 0;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #4a90e2;
+    color: white;
+    transition: transform 0.2s,
+}
+
+.dias button:hover {
+    background: #357abd;
+    transform: scale(1.03);
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* BOTÃO FECHAR */
+.fechar {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
