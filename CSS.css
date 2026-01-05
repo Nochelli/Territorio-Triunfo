@@ -1,63 +1,26 @@
-body {
-    margin: 0;
-    height: 100vh;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    text-align: center;
-}
-
-button {
-    display: block;
-    margin: 8px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#imagemDia {
-    margin-top: 20px;
-    max-width: 300px;
-    display: none;
-}
-
-.zoom-area {
-    max-width: 90%;
-    max-height: 90%;
-    overflow: hidden;
-}
-
-.zoom-area img {
-    max-width: 100%;
-    max-height: 100%;
-    touch-action: none;
-}
-
+/* RESET E BASE */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #bdbdbd;
     min-height: 100vh;
-    background: #bdbdbd;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    padding: 10px;
 }
 
 /* CONTAINER PRINCIPAL */
 .container {
-    background: #ffffff;
+    background: #fff;
     padding: 25px;
     border-radius: 12px;
-    width: 90%;
+    width: 100%;
     max-width: 400px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -67,10 +30,10 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* BOTÕES */
+/* BOTÕES DOS DIAS */
 .dias button {
     width: 100%;
-    margin: 6px 0px;
+    margin: 6px 0;
     padding: 12px;
     font-size: 16px;
     border: none;
@@ -78,7 +41,7 @@ h1 {
     cursor: pointer;
     background: #4a90e2;
     color: white;
-    transition: transform 0.2s,
+    transition: transform 0.2s, background 0.2s;
 }
 
 .dias button:hover {
@@ -88,34 +51,56 @@ h1 {
 
 /* MODAL */
 .modal {
-    display: none;
+    display: none; /* começa escondido */
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
     z-index: 10;
+    overflow-y: auto; /* permite scroll vertical em celulares */
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start; /* começa do topo para não cortar imagem */
 }
 
-.modal img {
-    max-width: 90%;
-    max-height: 90%;
+/* ÁREA DE ZOOM */
+.zoom-area {
+    width: 100%;
+    max-width: 500px; /* limite para desktop */
+    margin: 0 auto;
+}
+
+/* IMAGEM NO MODAL */
+.zoom-area img {
+    display: block;       /* essencial para PinchZoom */
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;     /* nunca ultrapassa a altura da tela */
+    object-fit: contain;
     border-radius: 10px;
+    touch-action: none;   /* permite pinch zoom */
 }
 
 /* BOTÃO FECHAR */
 .fechar {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 15px;
+    right: 20px;
     font-size: 40px;
     color: white;
     cursor: pointer;
 }
 
+/* RESPONSIVO PARA CELULARES */
 @media (max-width: 480px) {
     .zoom-area img {
-        max-height: 90vh;
+        max-height: 85vh;
         max-width: 95%;
+    }
+    .modal {
+        padding: 10px;
     }
 }

@@ -13,7 +13,7 @@
 
         <div class="dias">
             <button onclick="abrirModal('segunda/azenha.jpg')">Segunda-feira</button>
-            <button onclick="abrirModal('triunfo.jpg')">Terça-feira</button>
+            <button onclick="abrirModal('terca.jpg')">Terça-feira</button>
             <button onclick="abrirModal('quarta.jpg')">Quarta-feira</button>
             <button onclick="abrirModal('quinta.jpg')">Quinta-feira</button>
             <button onclick="abrirModal('sexta.jpg')">Sexta-feira</button>
@@ -26,49 +26,46 @@
             <button onclick="abrirModal('domingo.jpg')">Grupo 4 - S. Jorge I</button>
             <button onclick="abrirModal('domingo.jpg')">Grupo 5 - S. Jorge II</button>
             <button onclick="abrirModal('domingo.jpg')">Grupo 6 - S. Jorge III</button>
-            <button onclick="abrirModal('domingo.jpg')">Grupo 7 - S. Jorge III</button>            
-
-
-
+            <button onclick="abrirModal('domingo.jpg')">Grupo 7 - S. Jorge III</button>
         </div>
     </div>
 
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="fecharModal()">
-    <span class="fechar">&times;</span>
-
-    <div class="zoom-area" onclick="event.stopPropagation()">
-        <img id="imagemModal" src="">
+    <!-- MODAL -->
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <span class="fechar" onclick="fecharModal()">&times;</span>
+        <div class="zoom-area" onclick="event.stopPropagation()">
+            <img id="imagemModal" src="">
+        </div>
     </div>
-</div>
 
-<!-- BIBLIOTECA DE ZOOM -->
-<script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
+    <!-- BIBLIOTECA DE ZOOM -->
+    <script src="https://unpkg.com/pinch-zoom-js@2.3.4/dist/pinch-zoom.umd.js"></script>
 
+    <script>
+        let pinchZoom;
 
-<script>
-    let pinchZoom;
+        function abrirModal(imagem) {
+            const modal = document.getElementById("modal");
+            const img = document.getElementById("imagemModal");
 
-    function abrirModal(imagem) {
-        document.getElementById("modal").style.display = "flex";
+            img.src = imagem;
+            modal.style.display = "flex";
 
-        const img = document.getElementById("imagemModal");
-        img.src = imagem;
+            // espera a imagem carregar antes de inicializar o pinch
+            img.onload = () => {
+                if (pinchZoom) pinchZoom.destroy();
 
-        if (pinchZoom) {
-            pinchZoom.destroy();
+                pinchZoom = new PinchZoom(img, {
+                    maxZoom: 4
+                });
+            }
         }
 
-        pinchZoom = new PinchZoom(img, {
-            maxZoom: 4
-        });
-    }
-
-    function fecharModal() {
-        document.getElementById("modal").style.display = "none";
-    }
-</script>
-
+        function fecharModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
